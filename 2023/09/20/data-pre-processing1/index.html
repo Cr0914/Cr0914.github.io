@@ -13,12 +13,10 @@
 <meta property="og:site_name" content="Cr0914">
 <meta property="og:description" content="缺失值 比赛提供的数据，发现有些单元格是null或空的 缺失太多例如调查人口信息，发现“年龄”这一项缺失了40%，就直接把该项指标删除 最简单处理:均值、众数插补 定量数据，例如关于一群人的身高、年龄等数据，用整体的均值来补缺失 定性数据，例如关于一群人的性别、文化程度;某些事件调查的满意度，用出现次数最多的值补缺失.。 适用赛题:人口的数量年龄、经济产业情况等统计数据，对个体精度要求不大的数据">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:\Users\DELL\AppData\Roaming\Typora\typora-user-images\image-20230920211730283.png">
 <meta property="article:published_time" content="2023-09-20T14:27:36.000Z">
-<meta property="article:modified_time" content="2023-09-20T14:29:30.995Z">
+<meta property="article:modified_time" content="2023-09-21T02:16:38.627Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:\Users\DELL\AppData\Roaming\Typora\typora-user-images\image-20230920211730283.png">
     
     
       
@@ -170,12 +168,31 @@
 </ul>
 </li>
 <li><strong>样条插值法</strong><ul>
-<li>· 用分段光滑的曲线去插值，光滑意味着曲线不仅连续，还要有连续的曲率</li>
+<li>用分段光滑的曲线去插值，光滑意味着曲线不仅连续，还要有连续的曲率</li>
 <li>适用赛题: 零件加工、水库水流量，图像“基线漂移”，机器人轨迹等精度要求高、没有突变的数据</li>
 </ul>
 </li>
 </ul>
-<h1 id="异常值"><a href="#异常值" class="headerlink" title="异常值"></a>异常值</h1><p><img src="C:\Users\DELL\AppData\Roaming\Typora\typora-user-images\image-20230920211730283.png" alt="image-20230920211730283"></p>
+<h1 id="异常值"><a href="#异常值" class="headerlink" title="异常值"></a>异常值</h1><ul>
+<li><p>样本中明显和其他数值差异很大的数据，例如一群人的身高数据中有个3米2的</p>
+</li>
+<li><p><strong>正态分布3а原则</strong></p>
+<ol>
+<li>数值分布在 (u-3а,u+3а)中的概率为99.73%，其中u为平均值，а为标准差</li>
+<li>求解步骤:1.计算均值u和标准差а;2判断每个数据值是否在 (u-3a,u+3а)内，不在则为异常值。</li>
+<li><strong>适用题目</strong>: 总体符合正态分布，例如人口数据、测量误差、生产加工质量、考试成绩等。</li>
+<li><strong>不适用题目</strong>: 总体符合其他分布，例如公交站人数排队论符合泊松分布</li>
+</ol>
+</li>
+<li><p><strong>画箱型图</strong></p>
+<ol>
+<li>箱型图中，把数据从小到大排序。下四分位数Q1是排第25%的数值，上四分位数Q3是排第75%的数值</li>
+<li>四分位距IQR&#x3D;Q3-Q1，也就是排名第75%的减去第25%的数值</li>
+<li>与正态分布类似，设置个<strong>合理区间</strong>，在<strong>区间外的就是异常值</strong></li>
+<li>一般设[Q1-1.5<em>IQR，Q3 +1.5</em>IQR]内为正常值</li>
+</ol>
+</li>
+</ul>
 
   </div>
 </article>
