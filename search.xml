@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>数学建模-论文手</title>
+    <url>/2023/09/20/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/</url>
+    <content><![CDATA[<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a><strong>标题</strong></h1><p>基于XXX模型的XXX问题研究</p>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h1><p>不要加图或者表或者公式，不超过一页800-1000字</p>
+<p>开头模板：本文主要研究了XXX问题，根据XXX,利用XXX模型&#x2F;方法，求解出XXX<br>摘要开头段不要写详细求解结果</p>
+<p>中间段模板：针对问题一，根据&#x2F;考虑XXX….,建立XXX模型&#x2F;利用XXX方法，求解出XXX<br>优化类，预测类和物理类要明确数值，若数据过多可说明数据见附录</p>
+<p>总结：<br>若写完后超过一页，可以不写<br>不要累赘重复前面的内容<br>加一些自夸</p>
+<h1 id="正文要求"><a href="#正文要求" class="headerlink" title="正文要求"></a><strong>正文要求</strong></h1><p>不要超过三级标题<br>表格要用三线表<br>图和表都要有标题，表的标题在表的上方，图的标题在图的下方<br>重要公式右侧要有编号</p>
+<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>公式插入可以用mathpix<br>右侧编号的可以见建一个1x2的表格，左边填公式，右边插入序号<br>(  插入-&gt;文档部件 -&gt; 域 -&gt;autonum -&gt; (1)    )<br>后边再编写公式时直接复制即可</p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>表的标题在表的上方（带序号）自动编号</p>
+<h3 id="三线表"><a href="#三线表" class="headerlink" title="三线表"></a><strong>三线表</strong></h3><ol>
+<li>插入表格</li>
+<li>将样式应用于整个表格</li>
+<li>先选择无边框，再选择上框线和下框线</li>
+<li>格式中设置表格属性居中</li>
+<li>将样式应用于标题行，选择下框线</li>
+</ol>
+<h3 id="表格自动编号"><a href="#表格自动编号" class="headerlink" title="表格自动编号"></a><strong>表格自动编号</strong></h3><p>（引入 -&gt;插入题注 -&gt;域 -&gt;(1)   )</p>
+<h2 id="分页符"><a href="#分页符" class="headerlink" title="分页符"></a>分页符</h2><p>该符号后面的内容会到下一页中<br> （插入 -&gt; 分页）</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>格式规范<br>去除首行缩进，按正文出现顺序编号<br>加角标（WPS-&gt;开始+角标）</p>
+]]></content>
+      <categories>
+        <category>数学建模</category>
+      </categories>
+  </entry>
+  <entry>
     <title>hexo使用说明</title>
     <url>/2024/09/23/hexo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</url>
     <content><![CDATA[<h1 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h1><p>主题设置：<br>在官网中找到喜欢的主题，并克隆到&#x2F;themes文件夹下</p>
@@ -28,44 +54,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Mathematical_model_tips1</title>
-    <url>/2023/09/20/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<h1 id="搜索技巧"><a href="#搜索技巧" class="headerlink" title="搜索技巧"></a>搜索技巧</h1><p>完全匹配搜索：  双引号”“<br>标题必含关键词：  intitle:<br>搜索文档：filetype:pdf<br>屏蔽不想要的： 空格加减号-屏蔽词</p>
-<hr>
-<h1 id="数据收集"><a href="#数据收集" class="headerlink" title="数据收集"></a>数据收集</h1><p>知网、谷歌学术<br>国家统计局[[<a href="http://www.stats.gov.cn/">国家统计局 (stats.gov.cn)</a>]]<br>epsdata平台（收费、可申请七天试用）</p>
-]]></content>
-      <categories>
-        <category>数学建模</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Mathematical_papper1</title>
-    <url>/2023/09/20/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/</url>
-    <content><![CDATA[<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a><strong>标题</strong></h1><p>基于XXX模型的XXX问题研究</p>
-<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h1><p>不要加图或者表或者公式，不超过一页800-1000字</p>
-<p>开头模板：本文主要研究了XXX问题，根据XXX,利用XXX模型&#x2F;方法，求解出XXX<br>摘要开头段不要写详细求解结果</p>
-<p>中间段模板：针对问题一，根据&#x2F;考虑XXX….,建立XXX模型&#x2F;利用XXX方法，求解出XXX<br>优化类，预测类和物理类要明确数值，若数据过多可说明数据见附录</p>
-<p>总结：<br>若写完后超过一页，可以不写<br>不要累赘重复前面的内容<br>加一些自夸</p>
-<h1 id="正文要求"><a href="#正文要求" class="headerlink" title="正文要求"></a><strong>正文要求</strong></h1><p>不要超过三级标题<br>表格要用三线表<br>图和表都要有标题，表的标题在表的上方，图的标题在图的下方<br>重要公式右侧要有编号</p>
-<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>公式插入可以用mathpix<br>右侧编号的可以见建一个1x2的表格，左边填公式，右边插入序号<br>(  插入-&gt;文档部件 -&gt; 域 -&gt;autonum -&gt; (1)    )<br>后边再编写公式时直接复制即可</p>
-<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>表的标题在表的上方（带序号）自动编号</p>
-<h3 id="三线表"><a href="#三线表" class="headerlink" title="三线表"></a><strong>三线表</strong></h3><ol>
-<li>插入表格</li>
-<li>将样式应用于整个表格</li>
-<li>先选择无边框，再选择上框线和下框线</li>
-<li>格式中设置表格属性居中</li>
-<li>将样式应用于标题行，选择下框线</li>
-</ol>
-<h3 id="表格自动编号"><a href="#表格自动编号" class="headerlink" title="表格自动编号"></a><strong>表格自动编号</strong></h3><p>（引入 -&gt;插入题注 -&gt;域 -&gt;(1)   )</p>
-<h2 id="分页符"><a href="#分页符" class="headerlink" title="分页符"></a>分页符</h2><p>该符号后面的内容会到下一页中<br> （插入 -&gt; 分页）</p>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>格式规范<br>去除首行缩进，按正文出现顺序编号<br>加角标（WPS-&gt;开始+角标）</p>
-]]></content>
-      <categories>
-        <category>数学建模</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>data_pre_processing1</title>
+    <title>数据预处理</title>
     <url>/2023/09/20/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/</url>
     <content><![CDATA[<h1 id="缺失值"><a href="#缺失值" class="headerlink" title="缺失值"></a>缺失值</h1><ul>
 <li>比赛提供的数据，发现有些单元格是null或空的</li>
