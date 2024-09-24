@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="安全操作系统设计安全策略、安全机制概念（考） 安全需求：CIA（机密性、完整性、可用性） 安全策略分类： 访问支持策略 访问控制策略  访问支持策略标识与鉴别  用户标识 用户鉴别  可记账性：  要求任何影响系统安全性的行为都被跟踪和记录在案 审计信息必须有选择性的保留和保护  ‍ 访问控制策略主体、客体、主客体属性 主体是主动的实体，是系统内行为的发起者 主体属性是用户特征，系统用于访问控制的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安全操作系统设计">
+<meta property="og:url" content="http://example.com/2024/09/24/%E5%AE%89%E5%85%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="Cr_0914">
+<meta property="og:description" content="安全操作系统设计安全策略、安全机制概念（考） 安全需求：CIA（机密性、完整性、可用性） 安全策略分类： 访问支持策略 访问控制策略  访问支持策略标识与鉴别  用户标识 用户鉴别  可记账性：  要求任何影响系统安全性的行为都被跟踪和记录在案 审计信息必须有选择性的保留和保护  ‍ 访问控制策略主体、客体、主客体属性 主体是主动的实体，是系统内行为的发起者 主体属性是用户特征，系统用于访问控制的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-0914-1320470419.cos.ap-guangzhou.myqcloud.com/Obsidianimage-20230630101149-keq29aj.png">
+<meta property="og:image" content="https://obsidian-0914-1320470419.cos.ap-guangzhou.myqcloud.com/Obsidianimage-20230630101240-i5ik4hl.png">
+<meta property="og:image" content="https://obsidian-0914-1320470419.cos.ap-guangzhou.myqcloud.com/Obsidianimage-20230630101254-d81s2me.png">
+<meta property="og:image" content="https://obsidian-0914-1320470419.cos.ap-guangzhou.myqcloud.com/Obsidianimage-20230630101325-vyjbawf.png">
+<meta property="article:published_time" content="2024-09-24T01:14:58.000Z">
+<meta property="article:modified_time" content="2024-09-24T01:15:40.088Z">
+<meta property="article:author" content="cr_0914">
+<meta property="article:tag" content="操作系统安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://obsidian-0914-1320470419.cos.ap-guangzhou.myqcloud.com/Obsidianimage-20230630101149-keq29aj.png">
+
+
+<link rel="canonical" href="http://example.com/2024/09/24/%E5%AE%89%E5%85%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/09/24/%E5%AE%89%E5%85%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/","path":"2024/09/24/安全操作系统设计/","title":"安全操作系统设计"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>安全操作系统设计 | Cr_0914</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Cr_0914</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">允许万物穿过，允许一切发生</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.</span> <span class="nav-text">安全操作系统设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">安全策略分类：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%94%AF%E6%8C%81%E7%AD%96%E7%95%A5"><span class="nav-number">2.1.</span> <span class="nav-text">访问支持策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%AD%96%E7%95%A5"><span class="nav-number">2.2.</span> <span class="nav-text">访问控制策略</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E5%9F%BA%EF%BC%88TCB%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">可信计算基（TCB）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B%E7%89%B9%E7%82%B9"><span class="nav-number">4.</span> <span class="nav-text">安全模型特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.</span> <span class="nav-text">安全模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BLP%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.1.</span> <span class="nav-text">BLP模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BIBA%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.2.</span> <span class="nav-text">BIBA模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RBAC%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.3.</span> <span class="nav-text">RBAC模型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6"><span class="nav-number">6.</span> <span class="nav-text">安全机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6"><span class="nav-number">6.1.</span> <span class="nav-text">硬件安全机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6"><span class="nav-number">6.2.</span> <span class="nav-text">认证机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86%E6%9C%BA%E5%88%B6"><span class="nav-number">6.3.</span> <span class="nav-text">加密机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86%E6%8A%80%E6%9C%AF%E5%88%86%E7%B1%BB"><span class="nav-number">6.3.1.</span> <span class="nav-text">加密技术分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%A1%E8%AE%A1%E6%9C%BA%E5%88%B6"><span class="nav-number">6.4.</span> <span class="nav-text">审计机制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-1"><span class="nav-number">7.</span> <span class="nav-text">安全操作系统设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%88%E8%80%83%EF%BC%89%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99%EF%BC%9A"><span class="nav-number">7.1.</span> <span class="nav-text">（考）设计原则：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E7%89%B9%E6%9D%83%EF%BC%9A"><span class="nav-number">7.1.1.</span> <span class="nav-text">最小特权：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E6%96%B9%E6%B3%95"><span class="nav-number">7.2.</span> <span class="nav-text">开发方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9%E8%BF%9B-%E5%A2%9E%E5%BC%BA%E6%B3%95"><span class="nav-number">7.2.1.</span> <span class="nav-text">改进&#x2F;增强法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%B3%95"><span class="nav-number">7.2.2.</span> <span class="nav-text">虚拟机法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BF%E7%9C%9F%E6%B3%95"><span class="nav-number">7.2.3.</span> <span class="nav-text">仿真法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6%E7%9A%84%E5%8F%8B%E5%A5%BD%E5%9E%8B"><span class="nav-number">7.3.</span> <span class="nav-text">安全机制的友好型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E6%9D%A1%E5%8E%9F%E5%88%99"><span class="nav-number">7.3.1.</span> <span class="nav-text">三条原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCB%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%AE%BE%E8%AE%A1"><span class="nav-number">7.4.</span> <span class="nav-text">TCB的设计与设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E8%AF%84%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">7.5.</span> <span class="nav-text">操作系统安全评测方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SELinux"><span class="nav-number">8.</span> <span class="nav-text">SELinux</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#windows"><span class="nav-number">9.</span> <span class="nav-text">windows</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E6%97%B6%E7%94%A8%E5%88%B0%E7%9A%84%E6%97%A5%E5%BF%97%EF%BC%9A"><span class="nav-number">9.1.</span> <span class="nav-text">安全审计时用到的日志：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows7-%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7%E6%8E%A7%E5%88%B6"><span class="nav-number">9.2.</span> <span class="nav-text">Windows7 用户账户控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BitLocker"><span class="nav-number">9.3.</span> <span class="nav-text">BitLocker</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%83%9COS%EF%BC%88%E5%9B%BD%E4%BA%A7%EF%BC%89"><span class="nav-number">10.</span> <span class="nav-text">安胜OS（国产）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BD%E5%86%85%E5%A4%96%E7%9A%84%E5%AE%89%E5%85%A8%E6%A0%87%E5%87%86"><span class="nav-number">11.</span> <span class="nav-text">国内外的安全标准</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">cr_0914</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/24/%E5%AE%89%E5%85%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cr_0914">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cr_0914">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="安全操作系统设计 | Cr_0914">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          安全操作系统设计
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-09-24 09:14:58 / 修改时间：09:15:40" itemprop="dateCreated datePublished" datetime="2024-09-24T09:14:58+08:00">2024-09-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="安全操作系统设计"><a href="#安全操作系统设计" class="headerlink" title="安全操作系统设计"></a>安全操作系统设计</h1><p>安全策略、安全机制概念（考）</p>
+<p>安全需求：CIA（机密性、完整性、可用性）</p>
+<h1 id="安全策略分类："><a href="#安全策略分类：" class="headerlink" title="安全策略分类："></a>安全策略分类：</h1><ul>
+<li>访问支持策略</li>
+<li>访问控制策略</li>
+</ul>
+<h2 id="访问支持策略"><a href="#访问支持策略" class="headerlink" title="访问支持策略"></a>访问支持策略</h2><p>标识与鉴别</p>
+<ul>
+<li>用户标识</li>
+<li>用户鉴别</li>
+</ul>
+<p>可记账性：</p>
+<ul>
+<li>要求任何影响系统安全性的行为都被跟踪和记录在案</li>
+<li>审计信息必须有选择性的保留和保护</li>
+</ul>
+<p>‍</p>
+<h2 id="访问控制策略"><a href="#访问控制策略" class="headerlink" title="访问控制策略"></a>访问控制策略</h2><p>主体、客体、主客体属性</p>
+<p>主体是主动的实体，是系统内行为的发起者</p>
+<p>主体属性是用户特征，系统用于访问控制的常用因素</p>
+<p>客体是被动的实体，是系统内所有主体行为的直接承担者</p>
+<p>访问控制表</p>
+<p>分类：</p>
+<ul>
+<li>自主访问控制策略</li>
+<li>强制访问控制策略（BLP）</li>
+</ul>
+<h1 id="可信计算基（TCB）"><a href="#可信计算基（TCB）" class="headerlink" title="可信计算基（TCB）"></a>可信计算基（TCB）</h1><p>计算机内保护装置的总体，包括软件、硬件、和负责执行安全策略的组合体</p>
+<h1 id="安全模型特点"><a href="#安全模型特点" class="headerlink" title="安全模型特点"></a>安全模型特点</h1><ol>
+<li>精确的、无歧义的</li>
+<li>简易的、抽象的</li>
+<li>只涉及安全性质、不限制系统功能的实现</li>
+<li>安全策略的清晰表达</li>
+</ol>
+<h1 id="安全模型"><a href="#安全模型" class="headerlink" title="安全模型"></a>安全模型</h1><p>‍</p>
+<h2 id="BLP模型"><a href="#BLP模型" class="headerlink" title="BLP模型"></a>BLP模型</h2><p>简单安全特性：不能向上读</p>
+<p>*特性：不能往下写</p>
+<p>保证了机密性</p>
+<p>‍</p>
+<h2 id="BIBA模型"><a href="#BIBA模型" class="headerlink" title="BIBA模型"></a>BIBA模型</h2><p>安全策略与BLP相反</p>
+<p>不能向上写，不能往下读</p>
+<p>保证了完整性</p>
+<p>‍</p>
+<h2 id="RBAC模型"><a href="#RBAC模型" class="headerlink" title="RBAC模型"></a>RBAC模型</h2><p>基于角色的访问控制。核心思想是将权限同用户联系起来</p>
+<p>用户的权限通过赋予相应的角色来完成</p>
+<p>RBAC与DAC的根本区别：用户不能自主的将访问权限授给别的用户</p>
+<p>‍</p>
+<h1 id="安全机制"><a href="#安全机制" class="headerlink" title="安全机制"></a>安全机制</h1><h2 id="硬件安全机制"><a href="#硬件安全机制" class="headerlink" title="硬件安全机制"></a>硬件安全机制</h2><ul>
+<li>存储保护</li>
+<li>运行保护</li>
+<li>I&#x2F;O保护</li>
+</ul>
+<h2 id="认证机制"><a href="#认证机制" class="headerlink" title="认证机制"></a>认证机制</h2><p>‍</p>
+<h2 id="加密机制"><a href="#加密机制" class="headerlink" title="加密机制"></a>加密机制</h2><h3 id="加密技术分类"><a href="#加密技术分类" class="headerlink" title="加密技术分类"></a>加密技术分类</h3><p>数据传输加密技术</p>
+<p>数据存储加密技术</p>
+<p>‍</p>
+<p>密码体制分类：非对称、对称</p>
+<h2 id="审计机制"><a href="#审计机制" class="headerlink" title="审计机制"></a>审计机制</h2><p>一种事后手段</p>
+<p>• 对系统中有关安全的活动进行记录</p>
+<p>• 认定违反安全规则的行为</p>
+<h1 id="安全操作系统设计-1"><a href="#安全操作系统设计-1" class="headerlink" title="安全操作系统设计"></a>安全操作系统设计</h1><h2 id="（考）设计原则："><a href="#（考）设计原则：" class="headerlink" title="（考）设计原则："></a>（考）设计原则：</h2><ol>
+<li><h3 id="最小特权："><a href="#最小特权：" class="headerlink" title="最小特权："></a>最小特权：</h3><p>（含义可能考）</p>
+<p>为了使无意或有意的攻击造成的损失达到最低程度，每个用户和程序必须按照“需要”原则，尽可能使用最小特权</p>
+</li>
+<li><p><strong>机制的经济性</strong></p>
+</li>
+<li><p><strong>开放系统设计</strong></p>
+</li>
+<li><p><strong>完整的访问控制机制</strong></p>
+</li>
+<li><p><strong>基于<strong><strong>“允许”</strong></strong>的设计原则</strong>S</p>
+</li>
+<li><p><strong>权限分离</strong></p>
+</li>
+<li><p><strong>避免信息流的潜在通道</strong></p>
+</li>
+<li><p><strong>用户友好</strong></p>
+</li>
+</ol>
+<p>‍</p>
+<h2 id="开发方法"><a href="#开发方法" class="headerlink" title="开发方法"></a>开发方法</h2><h3 id="改进-增强法"><a href="#改进-增强法" class="headerlink" title="改进&#x2F;增强法"></a>改进&#x2F;增强法</h3><p>在现有操作系统的基础上对其内核和应用程序进行面向安全策略的分析，然后加入安全机制，经改造、开发后的安全操作系统基本上保持了原ISOS的用户接口界面</p>
+<p>优点：不破坏原系统的体系结构，开发代价小，且能很好地保持原ISOS的用户接口界面和系统效率</p>
+<p>缺点：改进&#x2F;增强法是受原操作系统体系结构和现有应用程序的限制，很难达到很高（如B2级以上）的安全级别  </p>
+<h3 id="虚拟机法"><a href="#虚拟机法" class="headerlink" title="虚拟机法"></a>虚拟机法</h3><p>在现有操作系统与硬件之间增加一个新的分层作为安全内核，操作系统几乎不变地作为虚拟机来运行</p>
+<p><strong>优点</strong>：安全内核的接口几乎与原有硬件编程接口等价，操作系统本身并未意识到已被安全内核控制，仍像在裸机上一样执行它自己的进程和内存管理功能，可以不变地支持现有的应用程序，且能很好地兼容ISOS的将来版本</p>
+<p>虚拟机法在KVM中运用得相当成功，由于硬件（IBM370）和原有操作系统（VM&#x2F;370）的结构都支持虚拟机</p>
+<p><strong>缺点</strong>：虚拟机法增强操作系统的安全性时，硬件特性对虚拟机的实现非常关键，它要求原系统的硬件和结构都要支持虚拟机  </p>
+<h3 id="仿真法"><a href="#仿真法" class="headerlink" title="仿真法"></a>仿真法</h3><p>现有操作系统的内核进行面向安全策略的分析和修改以形成安全内核，然后在安全内核与原ISOS用户接口界面中间再编写一层仿真程序</p>
+<p><strong>优点</strong>：在于在建立安全内核时，可以不必受现有应用程序的限制，且可以完全自由地定义ISOS仿真程序与安全内核之间的接口</p>
+<p><strong>缺点</strong>：这种方法要同时设计仿真程序和安全内核，还要受顶层ISOS接口的限制。另外根据安全策略，有些ISOS的接口功能不安全，从而不能仿真；有些接口功能尽管安全，但仿真实现特别困难  </p>
+<p>‍</p>
+<h2 id="安全机制的友好型"><a href="#安全机制的友好型" class="headerlink" title="安全机制的友好型"></a>安全机制的友好型</h2><p>在设计安全机制的整个过程中，必须遵守三条原则</p>
+<h3 id="三条原则"><a href="#三条原则" class="headerlink" title="三条原则"></a>三条原则</h3><ul>
+<li>安全不应该影响遵守规则的用户</li>
+<li>便于用户的授权存取</li>
+<li>便于用户的控制存取</li>
+</ul>
+<h2 id="TCB的设计与设计"><a href="#TCB的设计与设计" class="headerlink" title="TCB的设计与设计"></a>TCB的设计与设计</h2><ul>
+<li>生命周期支持</li>
+<li>测试</li>
+<li>脆弱性评定</li>
+</ul>
+<p>‍</p>
+<h2 id="操作系统安全评测方法"><a href="#操作系统安全评测方法" class="headerlink" title="操作系统安全评测方法"></a>操作系统安全评测方法</h2><ul>
+<li><p>形式化验证</p>
+</li>
+<li><p>非形式化确认</p>
+<p>安全需求检查、设计及代码检查、模块及系统测试</p>
+</li>
+<li><p>入侵测试</p>
+</li>
+</ul>
+<h1 id="SELinux"><a href="#SELinux" class="headerlink" title="SELinux"></a>SELinux</h1><p>‍</p>
+<h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><h2 id="安全审计时用到的日志："><a href="#安全审计时用到的日志：" class="headerlink" title="安全审计时用到的日志："></a>安全审计时用到的日志：</h2><p>系统日志、应用程序日志、安全日志</p>
+<p>‍</p>
+<h2 id="Windows7-用户账户控制"><a href="#Windows7-用户账户控制" class="headerlink" title="Windows7 用户账户控制"></a>Windows7 用户账户控制</h2><p>用户账户控制（UAC）是vista提出的</p>
+<p>‍</p>
+<h2 id="BitLocker"><a href="#BitLocker" class="headerlink" title="BitLocker"></a>BitLocker</h2><p>Windows7中BitLocker可以对U盘和移动硬盘进行加密并且操作简单</p>
+<p>Powershell v2</p>
+<h1 id="安胜OS（国产）"><a href="#安胜OS（国产）" class="headerlink" title="安胜OS（国产）"></a>安胜OS（国产）</h1><p>多级安全模型：BLP<br>‍<br>国产数据库：达梦</p>
+<h1 id="国内外的安全标准"><a href="#国内外的安全标准" class="headerlink" title="国内外的安全标准"></a>国内外的安全标准</h1><p>TCSEC</p>
+<p>ITSEC</p>
+<p>CC</p>
+<p>我国相关标准</p>
+<p><img src="https://obsidian-0914-1320470419.cos.ap-guangzhou.myqcloud.com/Obsidianimage-20230630101149-keq29aj.png" alt="image">​</p>
+<p><img src="https://obsidian-0914-1320470419.cos.ap-guangzhou.myqcloud.com/Obsidianimage-20230630101240-i5ik4hl.png" alt="image">​</p>
+<p><img src="https://obsidian-0914-1320470419.cos.ap-guangzhou.myqcloud.com/Obsidianimage-20230630101254-d81s2me.png" alt="image">​</p>
+<p><img src="https://obsidian-0914-1320470419.cos.ap-guangzhou.myqcloud.com/Obsidianimage-20230630101325-vyjbawf.png" alt="image">​</p>
+<p>什么是等级保护？</p>
+<p>等级保护是指对国家重要信息，法人和其他组织及公民的专有信息以及公开信息和存储、传输、处理这些信息的信息系统分等级实行安全保护，对信息系统中使用的信息安全产品实行按等级管理，对信息系统中发生的信息安全事件分等级相应、处置</p>
+<p>‍</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/" rel="tag"># 操作系统安全</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/09/23/hexo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" rel="prev" title="hexo使用说明">
+                  <i class="fa fa-angle-left"></i> hexo使用说明
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/09/24/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/" rel="next" title="数字签名">
+                  数字签名 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">cr_0914</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
