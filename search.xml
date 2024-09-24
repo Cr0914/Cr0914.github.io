@@ -28,6 +28,32 @@
       </tags>
   </entry>
   <entry>
+    <title>数学建模-论文手</title>
+    <url>/2023/09/20/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/</url>
+    <content><![CDATA[<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a><strong>标题</strong></h1><p>基于XXX模型的XXX问题研究</p>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h1><p>不要加图或者表或者公式，不超过一页800-1000字</p>
+<p>开头模板：本文主要研究了XXX问题，根据XXX,利用XXX模型&#x2F;方法，求解出XXX<br>摘要开头段不要写详细求解结果</p>
+<p>中间段模板：针对问题一，根据&#x2F;考虑XXX….,建立XXX模型&#x2F;利用XXX方法，求解出XXX<br>优化类，预测类和物理类要明确数值，若数据过多可说明数据见附录</p>
+<p>总结：<br>若写完后超过一页，可以不写<br>不要累赘重复前面的内容<br>加一些自夸</p>
+<h1 id="正文要求"><a href="#正文要求" class="headerlink" title="正文要求"></a><strong>正文要求</strong></h1><p>不要超过三级标题<br>表格要用三线表<br>图和表都要有标题，表的标题在表的上方，图的标题在图的下方<br>重要公式右侧要有编号</p>
+<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>公式插入可以用mathpix<br>右侧编号的可以见建一个1x2的表格，左边填公式，右边插入序号<br>(  插入-&gt;文档部件 -&gt; 域 -&gt;autonum -&gt; (1)    )<br>后边再编写公式时直接复制即可</p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>表的标题在表的上方（带序号）自动编号</p>
+<h3 id="三线表"><a href="#三线表" class="headerlink" title="三线表"></a><strong>三线表</strong></h3><ol>
+<li>插入表格</li>
+<li>将样式应用于整个表格</li>
+<li>先选择无边框，再选择上框线和下框线</li>
+<li>格式中设置表格属性居中</li>
+<li>将样式应用于标题行，选择下框线</li>
+</ol>
+<h3 id="表格自动编号"><a href="#表格自动编号" class="headerlink" title="表格自动编号"></a><strong>表格自动编号</strong></h3><p>（引入 -&gt;插入题注 -&gt;域 -&gt;(1)   )</p>
+<h2 id="分页符"><a href="#分页符" class="headerlink" title="分页符"></a>分页符</h2><p>该符号后面的内容会到下一页中<br> （插入 -&gt; 分页）</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>格式规范<br>去除首行缩进，按正文出现顺序编号<br>加角标（WPS-&gt;开始+角标）</p>
+]]></content>
+      <categories>
+        <category>数学建模</category>
+      </categories>
+  </entry>
+  <entry>
     <title>数字签名</title>
     <url>/2024/09/24/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/</url>
     <content><![CDATA[<h1 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h1><p>先签名再加密</p>
@@ -113,30 +139,63 @@
       </tags>
   </entry>
   <entry>
-    <title>数学建模-论文手</title>
-    <url>/2023/09/20/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/</url>
-    <content><![CDATA[<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a><strong>标题</strong></h1><p>基于XXX模型的XXX问题研究</p>
-<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h1><p>不要加图或者表或者公式，不超过一页800-1000字</p>
-<p>开头模板：本文主要研究了XXX问题，根据XXX,利用XXX模型&#x2F;方法，求解出XXX<br>摘要开头段不要写详细求解结果</p>
-<p>中间段模板：针对问题一，根据&#x2F;考虑XXX….,建立XXX模型&#x2F;利用XXX方法，求解出XXX<br>优化类，预测类和物理类要明确数值，若数据过多可说明数据见附录</p>
-<p>总结：<br>若写完后超过一页，可以不写<br>不要累赘重复前面的内容<br>加一些自夸</p>
-<h1 id="正文要求"><a href="#正文要求" class="headerlink" title="正文要求"></a><strong>正文要求</strong></h1><p>不要超过三级标题<br>表格要用三线表<br>图和表都要有标题，表的标题在表的上方，图的标题在图的下方<br>重要公式右侧要有编号</p>
-<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>公式插入可以用mathpix<br>右侧编号的可以见建一个1x2的表格，左边填公式，右边插入序号<br>(  插入-&gt;文档部件 -&gt; 域 -&gt;autonum -&gt; (1)    )<br>后边再编写公式时直接复制即可</p>
-<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>表的标题在表的上方（带序号）自动编号</p>
-<h3 id="三线表"><a href="#三线表" class="headerlink" title="三线表"></a><strong>三线表</strong></h3><ol>
-<li>插入表格</li>
-<li>将样式应用于整个表格</li>
-<li>先选择无边框，再选择上框线和下框线</li>
-<li>格式中设置表格属性居中</li>
-<li>将样式应用于标题行，选择下框线</li>
-</ol>
-<h3 id="表格自动编号"><a href="#表格自动编号" class="headerlink" title="表格自动编号"></a><strong>表格自动编号</strong></h3><p>（引入 -&gt;插入题注 -&gt;域 -&gt;(1)   )</p>
-<h2 id="分页符"><a href="#分页符" class="headerlink" title="分页符"></a>分页符</h2><p>该符号后面的内容会到下一页中<br> （插入 -&gt; 分页）</p>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>格式规范<br>去除首行缩进，按正文出现顺序编号<br>加角标（WPS-&gt;开始+角标）</p>
+    <title>scrapy基本框架及使用</title>
+    <url>/2024/09/24/scrapy%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>项目名字<br>    项目的名字<br>        spiders文件夹（存储的是爬虫文件）<br>            init<br>            自定义的爬虫文件        核心功能文件<br>        init<br>        items           定义数据结构的地方 爬虫的数据都包含哪些<br>        middleware      中间件 代理<br>        pipelines       管道  用来处理下载的数据<br>        settings        配置文件 robots协议 ua定义等</p>
+<h3 id="基本步骤："><a href="#基本步骤：" class="headerlink" title="基本步骤："></a>基本步骤：</h3><h4 id="1-新建项目-：新建一个新的爬虫项目"><a href="#1-新建项目-：新建一个新的爬虫项目" class="headerlink" title="1 新建项目 ：新建一个新的爬虫项目"></a>1 新建项目 ：新建一个新的爬虫项目</h4> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">打开cmd，输入scrapy startproject 项目的名字</span><br><span class="line">(默认是在C:\Users\...这个目录下，你可以自行切换到对应的 文件下）</span><br><span class="line">注意：项目的名字不允许使用数字开头 也不能包含中文</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="2、明确目标-（items-py）：明确你想要抓取的目标"><a href="#2、明确目标-（items-py）：明确你想要抓取的目标" class="headerlink" title="2、明确目标 （items.py）：明确你想要抓取的目标"></a>2、明确目标 （items.py）：明确你想要抓取的目标</h4><p>选择你需要爬取的内容，例如作者名字、小说名、封面图片等<br>在items.py文件中定义</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import scrapy</span><br><span class="line">class AdicrawlerItem(scrapy.Item):</span><br><span class="line">    author = scrapy.Field()</span><br><span class="line">    theme = scrapy.Field()</span><br><span class="line">    # 以上定义了两个变量 分别是作者名、主题。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="3、制作爬虫-（spiders-xxspider-py）：制作爬虫开始爬取网页"><a href="#3、制作爬虫-（spiders-xxspider-py）：制作爬虫开始爬取网页" class="headerlink" title="3、制作爬虫 （spiders&#x2F;xxspider.py）：制作爬虫开始爬取网页"></a>3、制作爬虫 （spiders&#x2F;xxspider.py）：制作爬虫开始爬取网页</h4><p>创建爬虫文件：</p>
+<pre><code>要在spiders文件在去创建爬虫文件
+     cd 项目的名字\项目的名字\spiders
+     eg : cd scrapy_baidu\scrapy_baidu\spiders
+
+创建爬虫文件
+ 	scrapy genspider 爬虫文件的名字 要爬的网页
+ 	eg : scrapy genspider baidu www.baidu.com
+  	一般情况下不需要添加http协议
+  	因为start_urls的值是根据allowed_domains修改的
+</code></pre>
+<p>爬虫文件的解释：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import scrapy</span><br><span class="line">class BaiduSpider(scrapy.Spider):</span><br><span class="line">    # 爬虫的名字 一般运行爬虫的时候 使用的值</span><br><span class="line">    name = &#x27;baidu&#x27;</span><br><span class="line">    # 允许访问的域名</span><br><span class="line">    allowed_domains = [&#x27;www.baidu.com&#x27;]</span><br><span class="line">    # 起始的url地址  指的是第一次要访问的域名</span><br><span class="line">    # start_urls   是在allowed_domains的前面添加一个http：//</span><br><span class="line">    #              是在allowed_domains的后面添加一个/</span><br><span class="line">    # 如果以html结尾 就不用加/ 否则网站进不去  报错</span><br><span class="line">    start_urls = [&#x27;http://www.baidu.com/&#x27;]</span><br><span class="line"></span><br><span class="line">    # 是执行了start_urls之后  执行的方法</span><br><span class="line">    # 方法中的response  就是返回的那个对象</span><br><span class="line">    # 相当于 response = urllib.request.urlopen()</span><br><span class="line">    #       response = requests.get()</span><br><span class="line">    def parse(self, response):</span><br><span class="line">        pass</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>response的属性和方法</p>
+<pre><code>response.text  获取的是响应的字符串
+response.body  获取的是二进制数据
+response.xpath  可以直接使用xpath方法来解析response中的内容
+response.extract()  提取seletor对象的data属性值
+response.extract_first()  提取的seletor列表的第一个数据
+</code></pre>
+<p>baidu.py:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import scrapy</span><br><span class="line">from AdiCrawler.items import AdicrawlerItem</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class ThousandpicSpider(scrapy.Spider):</span><br><span class="line">    name = &#x27;thousandpic&#x27;</span><br><span class="line">    allowed_domains = [&#x27;www.58pic.com&#x27;]</span><br><span class="line">    start_urls = [&#x27;http://www.58pic.com/c/&#x27;]</span><br><span class="line"></span><br><span class="line">    def parse(self, response):</span><br><span class="line">        author = response.xpath(&#x27;//div[@class=&quot;wrap-list fl&quot;]//span[@class=&quot;fl info-h1&quot;]/text()&#x27;).extract()</span><br><span class="line">        theme = response.xpath(&#x27;//div[@class=&quot;wrap-list fl&quot;]//span[@class=&quot;usernameColor&quot;]/text()&#x27;).extract()</span><br><span class="line">        item = AdicrawlerItem(author=author,theme=theme)</span><br><span class="line">        yield item</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="4、存储内容"><a href="#4、存储内容" class="headerlink" title="4、存储内容"></a>4、存储内容</h4><h5 id="方法一：编辑settings-py文件"><a href="#方法一：编辑settings-py文件" class="headerlink" title="方法一：编辑settings.py文件"></a>方法一：编辑settings.py文件</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#编辑settings.py文件，将输出格式设置为CSV</span><br><span class="line">FEED_FORMAT = &#x27;csv&#x27;</span><br><span class="line">FEED_URI = &#x27;NDSS2024.csv&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>有报错时可以改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FEEDS = &#123;</span><br><span class="line">    &#x27;NDSS2024.csv&#x27;: &#123;</span><br><span class="line">        &#x27;format&#x27;: &#x27;csv&#x27;,</span><br><span class="line">        &#x27;overwrite&#x27;: True,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="方法二：管道存储"><a href="#方法二：管道存储" class="headerlink" title="方法二：管道存储"></a>方法二：管道存储</h5><p>（pipelines.py）：设计管道存储爬取内容<br>如果想使用管道的话 那么就必须在settings.py中开启管道</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">	    # 管道可以有很多个 那么管道是有优先级 优先级的范围是1到1000 值越小优先级越高</span><br><span class="line">	   &#x27;scrapy_dangdang.pipelines.ScrapyDangdangPipeline&#x27;: 300,</span><br><span class="line">&#125;</span><br><span class="line">    	# 将在settings.py中这段话取消注释，则打开了通道。</span><br><span class="line">    	</span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后去pippelines.py中设计管道：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class ScrapyDangdangPipeline:</span><br><span class="line"></span><br><span class="line">    def open_spider(self,spider):</span><br><span class="line">        self.fp = open(&#x27;doubanBookTop250.csv&#x27;,&#x27;w&#x27;,encoding=&#x27;utf-8&#x27;)</span><br><span class="line"></span><br><span class="line">    # item就是yield后面的对象</span><br><span class="line">    def process_item(self, item, spider):   </span><br><span class="line">        self.fp.write(str(item))</span><br><span class="line">        return item</span><br><span class="line"></span><br><span class="line">    def close_spider(self,spider):</span><br><span class="line">        self.fp.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="5、运行爬虫"><a href="#5、运行爬虫" class="headerlink" title="5、运行爬虫"></a>5、运行爬虫</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">在cmd中输入：scrapy crawl 爬虫的名字 eg:scrapy crawl baidu</span><br></pre></td></tr></table></figure>
+
+<h3 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h3><h4 id="不显示日志"><a href="#不显示日志" class="headerlink" title="不显示日志"></a>不显示日志</h4><p>可以再settings.py中加入下列两行代码不显示日志</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">### 写下列两行代码可以不显示日志</span><br><span class="line">LOG_LEVEL = &#x27;WARNING&#x27;</span><br><span class="line">ROBOTSTXT_OBEY = False</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="反爬虫"><a href="#反爬虫" class="headerlink" title="反爬虫"></a>反爬虫</h4><p>当访问不了页面,报错403时：<br>在settings.py文件中加入下列代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">USER_AGENT = &#x27;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>报错404时：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">### 报404的错改成False</span><br><span class="line">### Obey robots.txt rules</span><br><span class="line">ROBOTSTXT_OBEY = False</span><br></pre></td></tr></table></figure>
 ]]></content>
-      <categories>
-        <category>数学建模</category>
-      </categories>
+      <tags>
+        <tag>爬虫</tag>
+      </tags>
   </entry>
   <entry>
     <title>安全操作系统设计</title>

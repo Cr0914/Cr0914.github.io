@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="项目名字    项目的名字        spiders文件夹（存储的是爬虫文件）            init            自定义的爬虫文件        核心功能文件        init        items           定义数据结构的地方 爬虫的数据都包含哪些        middleware      中间件 代理        pipelines">
+<meta property="og:type" content="article">
+<meta property="og:title" content="scrapy基本框架及使用">
+<meta property="og:url" content="http://example.com/2024/09/24/scrapy%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6%E5%8F%8A%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Cr_0914">
+<meta property="og:description" content="项目名字    项目的名字        spiders文件夹（存储的是爬虫文件）            init            自定义的爬虫文件        核心功能文件        init        items           定义数据结构的地方 爬虫的数据都包含哪些        middleware      中间件 代理        pipelines">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-24T01:50:04.000Z">
+<meta property="article:modified_time" content="2024-09-24T01:50:45.917Z">
+<meta property="article:author" content="cr_0914">
+<meta property="article:tag" content="爬虫">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2024/09/24/scrapy%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6%E5%8F%8A%E4%BD%BF%E7%94%A8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/09/24/scrapy%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6%E5%8F%8A%E4%BD%BF%E7%94%A8/","path":"2024/09/24/scrapy基本框架及使用/","title":"scrapy基本框架及使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>scrapy基本框架及使用 | Cr_0914</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Cr_0914</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">允许万物穿过，允许一切发生</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">基本步骤：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE-%EF%BC%9A%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.1.</span> <span class="nav-text">1 新建项目 ：新建一个新的爬虫项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E6%98%8E%E7%A1%AE%E7%9B%AE%E6%A0%87-%EF%BC%88items-py%EF%BC%89%EF%BC%9A%E6%98%8E%E7%A1%AE%E4%BD%A0%E6%83%B3%E8%A6%81%E6%8A%93%E5%8F%96%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="nav-number">1.2.</span> <span class="nav-text">2、明确目标 （items.py）：明确你想要抓取的目标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E5%88%B6%E4%BD%9C%E7%88%AC%E8%99%AB-%EF%BC%88spiders-xxspider-py%EF%BC%89%EF%BC%9A%E5%88%B6%E4%BD%9C%E7%88%AC%E8%99%AB%E5%BC%80%E5%A7%8B%E7%88%AC%E5%8F%96%E7%BD%91%E9%A1%B5"><span class="nav-number">1.3.</span> <span class="nav-text">3、制作爬虫 （spiders&#x2F;xxspider.py）：制作爬虫开始爬取网页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E5%AD%98%E5%82%A8%E5%86%85%E5%AE%B9"><span class="nav-number">1.4.</span> <span class="nav-text">4、存储内容</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E7%BC%96%E8%BE%91settings-py%E6%96%87%E4%BB%B6"><span class="nav-number">1.4.1.</span> <span class="nav-text">方法一：编辑settings.py文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E7%AE%A1%E9%81%93%E5%AD%98%E5%82%A8"><span class="nav-number">1.4.2.</span> <span class="nav-text">方法二：管道存储</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%E3%80%81%E8%BF%90%E8%A1%8C%E7%88%AC%E8%99%AB"><span class="nav-number">1.5.</span> <span class="nav-text">5、运行爬虫</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="nav-number">2.</span> <span class="nav-text">小技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E6%98%BE%E7%A4%BA%E6%97%A5%E5%BF%97"><span class="nav-number">2.1.</span> <span class="nav-text">不显示日志</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E7%88%AC%E8%99%AB"><span class="nav-number">2.2.</span> <span class="nav-text">反爬虫</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">cr_0914</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/24/scrapy%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6%E5%8F%8A%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cr_0914">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cr_0914">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="scrapy基本框架及使用 | Cr_0914">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          scrapy基本框架及使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-09-24 09:50:04 / 修改时间：09:50:45" itemprop="dateCreated datePublished" datetime="2024-09-24T09:50:04+08:00">2024-09-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>项目名字<br>    项目的名字<br>        spiders文件夹（存储的是爬虫文件）<br>            init<br>            自定义的爬虫文件        核心功能文件<br>        init<br>        items           定义数据结构的地方 爬虫的数据都包含哪些<br>        middleware      中间件 代理<br>        pipelines       管道  用来处理下载的数据<br>        settings        配置文件 robots协议 ua定义等</p>
+<h3 id="基本步骤："><a href="#基本步骤：" class="headerlink" title="基本步骤："></a>基本步骤：</h3><h4 id="1-新建项目-：新建一个新的爬虫项目"><a href="#1-新建项目-：新建一个新的爬虫项目" class="headerlink" title="1 新建项目 ：新建一个新的爬虫项目"></a>1 新建项目 ：新建一个新的爬虫项目</h4> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">打开cmd，输入scrapy startproject 项目的名字</span><br><span class="line">(默认是在C:\Users\...这个目录下，你可以自行切换到对应的 文件下）</span><br><span class="line">注意：项目的名字不允许使用数字开头 也不能包含中文</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="2、明确目标-（items-py）：明确你想要抓取的目标"><a href="#2、明确目标-（items-py）：明确你想要抓取的目标" class="headerlink" title="2、明确目标 （items.py）：明确你想要抓取的目标"></a>2、明确目标 （items.py）：明确你想要抓取的目标</h4><p>选择你需要爬取的内容，例如作者名字、小说名、封面图片等<br>在items.py文件中定义</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line">class AdicrawlerItem(scrapy.Item):</span><br><span class="line">    author = scrapy.Field()</span><br><span class="line">    theme = scrapy.Field()</span><br><span class="line">    # 以上定义了两个变量 分别是作者名、主题。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="3、制作爬虫-（spiders-xxspider-py）：制作爬虫开始爬取网页"><a href="#3、制作爬虫-（spiders-xxspider-py）：制作爬虫开始爬取网页" class="headerlink" title="3、制作爬虫 （spiders&#x2F;xxspider.py）：制作爬虫开始爬取网页"></a>3、制作爬虫 （spiders&#x2F;xxspider.py）：制作爬虫开始爬取网页</h4><p>创建爬虫文件：</p>
+<pre><code>要在spiders文件在去创建爬虫文件
+     cd 项目的名字\项目的名字\spiders
+     eg : cd scrapy_baidu\scrapy_baidu\spiders
+
+创建爬虫文件
+ 	scrapy genspider 爬虫文件的名字 要爬的网页
+ 	eg : scrapy genspider baidu www.baidu.com
+  	一般情况下不需要添加http协议
+  	因为start_urls的值是根据allowed_domains修改的
+</code></pre>
+<p>爬虫文件的解释：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line">class BaiduSpider(scrapy.Spider):</span><br><span class="line">    # 爬虫的名字 一般运行爬虫的时候 使用的值</span><br><span class="line">    name = &#x27;baidu&#x27;</span><br><span class="line">    # 允许访问的域名</span><br><span class="line">    allowed_domains = [&#x27;www.baidu.com&#x27;]</span><br><span class="line">    # 起始的url地址  指的是第一次要访问的域名</span><br><span class="line">    # start_urls   是在allowed_domains的前面添加一个http：//</span><br><span class="line">    #              是在allowed_domains的后面添加一个/</span><br><span class="line">    # 如果以html结尾 就不用加/ 否则网站进不去  报错</span><br><span class="line">    start_urls = [&#x27;http://www.baidu.com/&#x27;]</span><br><span class="line"></span><br><span class="line">    # 是执行了start_urls之后  执行的方法</span><br><span class="line">    # 方法中的response  就是返回的那个对象</span><br><span class="line">    # 相当于 response = urllib.request.urlopen()</span><br><span class="line">    #       response = requests.get()</span><br><span class="line">    def parse(self, response):</span><br><span class="line">        pass</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>response的属性和方法</p>
+<pre><code>response.text  获取的是响应的字符串
+response.body  获取的是二进制数据
+response.xpath  可以直接使用xpath方法来解析response中的内容
+response.extract()  提取seletor对象的data属性值
+response.extract_first()  提取的seletor列表的第一个数据
+</code></pre>
+<p>baidu.py:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line">from AdiCrawler.items import AdicrawlerItem</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class ThousandpicSpider(scrapy.Spider):</span><br><span class="line">    name = &#x27;thousandpic&#x27;</span><br><span class="line">    allowed_domains = [&#x27;www.58pic.com&#x27;]</span><br><span class="line">    start_urls = [&#x27;http://www.58pic.com/c/&#x27;]</span><br><span class="line"></span><br><span class="line">    def parse(self, response):</span><br><span class="line">        author = response.xpath(&#x27;//div[@class=&quot;wrap-list fl&quot;]//span[@class=&quot;fl info-h1&quot;]/text()&#x27;).extract()</span><br><span class="line">        theme = response.xpath(&#x27;//div[@class=&quot;wrap-list fl&quot;]//span[@class=&quot;usernameColor&quot;]/text()&#x27;).extract()</span><br><span class="line">        item = AdicrawlerItem(author=author,theme=theme)</span><br><span class="line">        yield item</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="4、存储内容"><a href="#4、存储内容" class="headerlink" title="4、存储内容"></a>4、存储内容</h4><h5 id="方法一：编辑settings-py文件"><a href="#方法一：编辑settings-py文件" class="headerlink" title="方法一：编辑settings.py文件"></a>方法一：编辑settings.py文件</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#编辑settings.py文件，将输出格式设置为CSV</span><br><span class="line">FEED_FORMAT = &#x27;csv&#x27;</span><br><span class="line">FEED_URI = &#x27;NDSS2024.csv&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>有报错时可以改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FEEDS = &#123;</span><br><span class="line">    &#x27;NDSS2024.csv&#x27;: &#123;</span><br><span class="line">        &#x27;format&#x27;: &#x27;csv&#x27;,</span><br><span class="line">        &#x27;overwrite&#x27;: True,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="方法二：管道存储"><a href="#方法二：管道存储" class="headerlink" title="方法二：管道存储"></a>方法二：管道存储</h5><p>（pipelines.py）：设计管道存储爬取内容<br>如果想使用管道的话 那么就必须在settings.py中开启管道</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">	    # 管道可以有很多个 那么管道是有优先级 优先级的范围是1到1000 值越小优先级越高</span><br><span class="line">	   &#x27;scrapy_dangdang.pipelines.ScrapyDangdangPipeline&#x27;: 300,</span><br><span class="line">&#125;</span><br><span class="line">    	# 将在settings.py中这段话取消注释，则打开了通道。</span><br><span class="line">    	</span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后去pippelines.py中设计管道：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class ScrapyDangdangPipeline:</span><br><span class="line"></span><br><span class="line">    def open_spider(self,spider):</span><br><span class="line">        self.fp = open(&#x27;doubanBookTop250.csv&#x27;,&#x27;w&#x27;,encoding=&#x27;utf-8&#x27;)</span><br><span class="line"></span><br><span class="line">    # item就是yield后面的对象</span><br><span class="line">    def process_item(self, item, spider):   </span><br><span class="line">        self.fp.write(str(item))</span><br><span class="line">        return item</span><br><span class="line"></span><br><span class="line">    def close_spider(self,spider):</span><br><span class="line">        self.fp.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="5、运行爬虫"><a href="#5、运行爬虫" class="headerlink" title="5、运行爬虫"></a>5、运行爬虫</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在cmd中输入：scrapy crawl 爬虫的名字 eg:scrapy crawl baidu</span><br></pre></td></tr></table></figure>
+
+<h3 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h3><h4 id="不显示日志"><a href="#不显示日志" class="headerlink" title="不显示日志"></a>不显示日志</h4><p>可以再settings.py中加入下列两行代码不显示日志</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">### 写下列两行代码可以不显示日志</span><br><span class="line">LOG_LEVEL = &#x27;WARNING&#x27;</span><br><span class="line">ROBOTSTXT_OBEY = False</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="反爬虫"><a href="#反爬虫" class="headerlink" title="反爬虫"></a>反爬虫</h4><p>当访问不了页面,报错403时：<br>在settings.py文件中加入下列代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">USER_AGENT = &#x27;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>报错404时：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">### 报404的错改成False</span><br><span class="line">### Obey robots.txt rules</span><br><span class="line">ROBOTSTXT_OBEY = False</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%88%AC%E8%99%AB/" rel="tag"># 爬虫</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/09/24/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/" rel="prev" title="数字签名">
+                  <i class="fa fa-angle-left"></i> 数字签名
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">cr_0914</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

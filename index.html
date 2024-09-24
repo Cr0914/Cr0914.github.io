@@ -147,7 +147,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -158,7 +158,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -175,6 +175,126 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/24/scrapy%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6%E5%8F%8A%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cr_0914">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cr_0914">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Cr_0914">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/09/24/scrapy%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6%E5%8F%8A%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">scrapy基本框架及使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-09-24 09:50:04 / 修改时间：09:50:45" itemprop="dateCreated datePublished" datetime="2024-09-24T09:50:04+08:00">2024-09-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>项目名字<br>    项目的名字<br>        spiders文件夹（存储的是爬虫文件）<br>            init<br>            自定义的爬虫文件        核心功能文件<br>        init<br>        items           定义数据结构的地方 爬虫的数据都包含哪些<br>        middleware      中间件 代理<br>        pipelines       管道  用来处理下载的数据<br>        settings        配置文件 robots协议 ua定义等</p>
+<h3 id="基本步骤："><a href="#基本步骤：" class="headerlink" title="基本步骤："></a>基本步骤：</h3><h4 id="1-新建项目-：新建一个新的爬虫项目"><a href="#1-新建项目-：新建一个新的爬虫项目" class="headerlink" title="1 新建项目 ：新建一个新的爬虫项目"></a>1 新建项目 ：新建一个新的爬虫项目</h4> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">打开cmd，输入scrapy startproject 项目的名字</span><br><span class="line">(默认是在C:\Users\...这个目录下，你可以自行切换到对应的 文件下）</span><br><span class="line">注意：项目的名字不允许使用数字开头 也不能包含中文</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="2、明确目标-（items-py）：明确你想要抓取的目标"><a href="#2、明确目标-（items-py）：明确你想要抓取的目标" class="headerlink" title="2、明确目标 （items.py）：明确你想要抓取的目标"></a>2、明确目标 （items.py）：明确你想要抓取的目标</h4><p>选择你需要爬取的内容，例如作者名字、小说名、封面图片等<br>在items.py文件中定义</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line">class AdicrawlerItem(scrapy.Item):</span><br><span class="line">    author = scrapy.Field()</span><br><span class="line">    theme = scrapy.Field()</span><br><span class="line">    # 以上定义了两个变量 分别是作者名、主题。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="3、制作爬虫-（spiders-xxspider-py）：制作爬虫开始爬取网页"><a href="#3、制作爬虫-（spiders-xxspider-py）：制作爬虫开始爬取网页" class="headerlink" title="3、制作爬虫 （spiders&#x2F;xxspider.py）：制作爬虫开始爬取网页"></a>3、制作爬虫 （spiders&#x2F;xxspider.py）：制作爬虫开始爬取网页</h4><p>创建爬虫文件：</p>
+<pre><code>要在spiders文件在去创建爬虫文件
+     cd 项目的名字\项目的名字\spiders
+     eg : cd scrapy_baidu\scrapy_baidu\spiders
+
+创建爬虫文件
+ 	scrapy genspider 爬虫文件的名字 要爬的网页
+ 	eg : scrapy genspider baidu www.baidu.com
+  	一般情况下不需要添加http协议
+  	因为start_urls的值是根据allowed_domains修改的
+</code></pre>
+<p>爬虫文件的解释：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line">class BaiduSpider(scrapy.Spider):</span><br><span class="line">    # 爬虫的名字 一般运行爬虫的时候 使用的值</span><br><span class="line">    name = &#x27;baidu&#x27;</span><br><span class="line">    # 允许访问的域名</span><br><span class="line">    allowed_domains = [&#x27;www.baidu.com&#x27;]</span><br><span class="line">    # 起始的url地址  指的是第一次要访问的域名</span><br><span class="line">    # start_urls   是在allowed_domains的前面添加一个http：//</span><br><span class="line">    #              是在allowed_domains的后面添加一个/</span><br><span class="line">    # 如果以html结尾 就不用加/ 否则网站进不去  报错</span><br><span class="line">    start_urls = [&#x27;http://www.baidu.com/&#x27;]</span><br><span class="line"></span><br><span class="line">    # 是执行了start_urls之后  执行的方法</span><br><span class="line">    # 方法中的response  就是返回的那个对象</span><br><span class="line">    # 相当于 response = urllib.request.urlopen()</span><br><span class="line">    #       response = requests.get()</span><br><span class="line">    def parse(self, response):</span><br><span class="line">        pass</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>response的属性和方法</p>
+<pre><code>response.text  获取的是响应的字符串
+response.body  获取的是二进制数据
+response.xpath  可以直接使用xpath方法来解析response中的内容
+response.extract()  提取seletor对象的data属性值
+response.extract_first()  提取的seletor列表的第一个数据
+</code></pre>
+<p>baidu.py:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line">from AdiCrawler.items import AdicrawlerItem</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class ThousandpicSpider(scrapy.Spider):</span><br><span class="line">    name = &#x27;thousandpic&#x27;</span><br><span class="line">    allowed_domains = [&#x27;www.58pic.com&#x27;]</span><br><span class="line">    start_urls = [&#x27;http://www.58pic.com/c/&#x27;]</span><br><span class="line"></span><br><span class="line">    def parse(self, response):</span><br><span class="line">        author = response.xpath(&#x27;//div[@class=&quot;wrap-list fl&quot;]//span[@class=&quot;fl info-h1&quot;]/text()&#x27;).extract()</span><br><span class="line">        theme = response.xpath(&#x27;//div[@class=&quot;wrap-list fl&quot;]//span[@class=&quot;usernameColor&quot;]/text()&#x27;).extract()</span><br><span class="line">        item = AdicrawlerItem(author=author,theme=theme)</span><br><span class="line">        yield item</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="4、存储内容"><a href="#4、存储内容" class="headerlink" title="4、存储内容"></a>4、存储内容</h4><h5 id="方法一：编辑settings-py文件"><a href="#方法一：编辑settings-py文件" class="headerlink" title="方法一：编辑settings.py文件"></a>方法一：编辑settings.py文件</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#编辑settings.py文件，将输出格式设置为CSV</span><br><span class="line">FEED_FORMAT = &#x27;csv&#x27;</span><br><span class="line">FEED_URI = &#x27;NDSS2024.csv&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>有报错时可以改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FEEDS = &#123;</span><br><span class="line">    &#x27;NDSS2024.csv&#x27;: &#123;</span><br><span class="line">        &#x27;format&#x27;: &#x27;csv&#x27;,</span><br><span class="line">        &#x27;overwrite&#x27;: True,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="方法二：管道存储"><a href="#方法二：管道存储" class="headerlink" title="方法二：管道存储"></a>方法二：管道存储</h5><p>（pipelines.py）：设计管道存储爬取内容<br>如果想使用管道的话 那么就必须在settings.py中开启管道</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">	    # 管道可以有很多个 那么管道是有优先级 优先级的范围是1到1000 值越小优先级越高</span><br><span class="line">	   &#x27;scrapy_dangdang.pipelines.ScrapyDangdangPipeline&#x27;: 300,</span><br><span class="line">&#125;</span><br><span class="line">    	# 将在settings.py中这段话取消注释，则打开了通道。</span><br><span class="line">    	</span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后去pippelines.py中设计管道：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class ScrapyDangdangPipeline:</span><br><span class="line"></span><br><span class="line">    def open_spider(self,spider):</span><br><span class="line">        self.fp = open(&#x27;doubanBookTop250.csv&#x27;,&#x27;w&#x27;,encoding=&#x27;utf-8&#x27;)</span><br><span class="line"></span><br><span class="line">    # item就是yield后面的对象</span><br><span class="line">    def process_item(self, item, spider):   </span><br><span class="line">        self.fp.write(str(item))</span><br><span class="line">        return item</span><br><span class="line"></span><br><span class="line">    def close_spider(self,spider):</span><br><span class="line">        self.fp.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="5、运行爬虫"><a href="#5、运行爬虫" class="headerlink" title="5、运行爬虫"></a>5、运行爬虫</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在cmd中输入：scrapy crawl 爬虫的名字 eg:scrapy crawl baidu</span><br></pre></td></tr></table></figure>
+
+<h3 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h3><h4 id="不显示日志"><a href="#不显示日志" class="headerlink" title="不显示日志"></a>不显示日志</h4><p>可以再settings.py中加入下列两行代码不显示日志</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">### 写下列两行代码可以不显示日志</span><br><span class="line">LOG_LEVEL = &#x27;WARNING&#x27;</span><br><span class="line">ROBOTSTXT_OBEY = False</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="反爬虫"><a href="#反爬虫" class="headerlink" title="反爬虫"></a>反爬虫</h4><p>当访问不了页面,报错403时：<br>在settings.py文件中加入下列代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">USER_AGENT = &#x27;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>报错404时：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">### 报404的错改成False</span><br><span class="line">### Obey robots.txt rules</span><br><span class="line">ROBOTSTXT_OBEY = False</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
